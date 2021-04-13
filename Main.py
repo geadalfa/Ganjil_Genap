@@ -219,7 +219,7 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
     else:  # else if the license plate is in the lower 1/4 of the image
         ptCenterOfTextAreaY = int(round(intPlateCenterY)) - int(
             round(plateHeight * 1.6))  # write the chars in above the plate
-    # end if
+    # end if yeah
 
     textSizeWidth, textSizeHeight = textSize  # unpack text size width and height
 
