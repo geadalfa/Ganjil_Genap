@@ -9,14 +9,12 @@ import os
 import datetime
 import numbers
 import cv2
-from PIL import ImageFont, ImageDraw, Image
 
 import Calibration as cal
 import DetectChars
 import DetectPlates
 import Preprocess as pp
 import imutils
-import numpy as np
 
 # Module level variables for image ##########################################################################
 
@@ -135,23 +133,7 @@ def main():
                 licenses_verify.append(new_license)
 
 
-        # Pass the image to PIL
-        cv2_im_rgb1 = cv2.cvtColor(img_original_scene, cv2.COLOR_BGR2RGB)
-        pil_im1 = Image.fromarray(cv2_im_rgb1)
-
-        draw1 = ImageDraw.Draw(pil_im1)
-        # use a truetype font
-        font1 = ImageFont.truetype("arial.ttf", 20)
-
-        # Draw the text
-        draw1.text((400, 400), waktu, font=font1)
-
-        # Get back the image to OpenCV
-        cv2_im_processed1 = cv2.cvtColor(np.array(pil_im1), cv2.COLOR_BGR2RGB)
-
-        cv2.imshow('duls', cv2_im_processed1)
-
-        cv2.putText(img_original_scene, waktu, (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 0.5, (255, 255, 255), 1,
+        cv2.putText(img_original_scene, waktu, (400, 450), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 255), 1,
                     bottomLeftOrigin=False)
 
         # cv2.putText(img_original_scene, "Press 's' to save frame to be 'save.png', for calibrating", (10, 30),
@@ -213,7 +195,8 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
     sceneHeight, sceneWidth, sceneNumChannels = imgOriginalScene.shape
     plateHeight, plateWidth, plateNumChannels = licPlate.imgPlate.shape
 
-    intFontFace = cv2.FONT_HERSHEY_TRIPLEX  # choose a plain jane font
+    intFontFace = cv2.FONT_HERSHEY_COMPLEX  # choose a plain jane font
+
     fltFontScale = float(plateHeight) / 30.0  # base font scale on height of plate area
     intFontThickness = int(round(fltFontScale * 1.5))  # base font thickness on font scale
 
@@ -244,25 +227,6 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
     ptLowerLeftTextOriginY = int(
         ptCenterOfTextAreaY + (textSizeHeight / 2))  # based on the text area center, width, and height
 
-
-    # Pass the image to PIL
-    # cv2_im_rgb = cv2.cvtColor(imgOriginalScene, cv2.COLOR_BGR2RGB)
-    # pil_im = Image.fromarray(cv2_im_rgb)
-    #
-    # draw = ImageDraw.Draw(pil_im)
-    # # use a truetype font
-    # font = ImageFont.truetype("arial.ttf", 20)
-    #
-    # # Draw the text
-    # draw.text((400, 400), waktu, font=font)
-    #
-    # # Get back the image to OpenCV
-    # cv2_im_processed = cv2.cvtColor(np.array(pil_im), cv2.COLOR_BGR2RGB)
-    #
-    # cv2.imshow('Fonts', cv2_im_processed)
-    #cv2.imshow('duls', duls)
-
-
     # write the text on the image
     cv2.putText(imgOriginalScene, licPlate.strChars, (ptLowerLeftTextOriginX, ptLowerLeftTextOriginY), intFontFace,
                 fltFontScale, SCALAR_YELLOW, intFontThickness)
@@ -277,20 +241,7 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
         datesame = 1
         cv2.putText(imgOriginalScene, "TANGGAL : GANJIL", (100, 100), intFontFace, 1,
                     SCALAR_WHITE, 1)  # GANJIL
-        # cv2_im_rgb = cv2.cvtColor(imgOriginalScene, cv2.COLOR_BGR2RGB)
-        # pil_im = Image.fromarray(cv2_im_rgb)
-        #
-        # draw = ImageDraw.Draw(pil_im)
-        # # use a truetype font
-        # font = ImageFont.truetype("arial.ttf", 20)
-        #
-        # # Draw the text
-        # draw.text((400, 400), 'Tanggal: Ganjil', font=font)
-        #
-        # # Get back the image to OpenCV
-        # cv2_im_processed = cv2.cvtColor(np.array(pil_im), cv2.COLOR_BGR2RGB)
 
-        cv2.imshow('Fonts', cv2_im_processed)
     result_scanfix = []
     result_scan = licPlate.strChars
     for i in result_scan :
@@ -382,20 +333,6 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
                 cv2.putText(imgOriginalScene, "TILANG", (ptLowerLeftTextOriginX, 200), intFontFace,
                                     fltFontScale, SCALAR_RED, intFontThickness)  # Tilang
 
-    cv2_im_rgb = cv2.cvtColor(imgOriginalScene, cv2.COLOR_BGR2RGB)
-    pil_im = Image.fromarray(cv2_im_rgb)
-
-    draw = ImageDraw.Draw(pil_im)
-    # use a truetype font
-    font = ImageFont.truetype("arial.ttf", 20)
-
-    # Draw the text
-    draw.text((400, 400), waktu, font=font)
-
-    # Get back the image to OpenCV
-    cv2_im_processed = cv2.cvtColor(np.array(pil_im), cv2.COLOR_BGR2RGB)
-
-    cv2.imshow('Fonts', cv2_im_processed)
 
 def searching(imgOriginalScene, loop):
     licenses = ""
