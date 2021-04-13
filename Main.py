@@ -144,13 +144,7 @@ def main():
                       ((img_original_scene.shape[1] // 2 - 230), (img_original_scene.shape[0] // 2 - 80)),
                       ((img_original_scene.shape[1] // 2 + 230), (img_original_scene.shape[0] // 2 + 80)), SCALAR_GREEN,
                       3)
-        cv2.imshow("imgOriginalScene", img_original_scene)
-
-        #color = (0, 0, 0) # Black
-        #thickness = -1
-        cv2.rectangle(img_original_scene, (0,450), (720,500), (0, 0, 0), -1)
-
-        # Displaying the image
+        cv2.rectangle(img_original_scene, (0, 450), (720, 500), (0, 0, 0), -1)
         cv2.imshow("imgOriginalScene", img_original_scene)
 
         key = cv2.waitKey(5) & 0xFF
@@ -239,6 +233,7 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
                 fltFontScale, SCALAR_YELLOW, intFontThickness)
     cv2.putText(imgOriginalScene, waktu, (400, 450), intFontFace, 0.5, (255, 255, 255), 1,
                 bottomLeftOrigin=False)
+    cv2.rectangle(imgOriginalScene, (0, 450), (720, 500), (0, 0, 0), -1)
 
     if (tgl % 2) == 0:
         datesame = 0
