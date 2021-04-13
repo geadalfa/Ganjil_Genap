@@ -1,10 +1,12 @@
-# ALPR Indonesia
-[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
+# ALPR Ganjil Genap Indonesia
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <br>
-Automatic license plate recognition for Indonesian plate **(White on black)**<br>
+Automatic license plate recognition Tilang Ganjil Genap for Indonesian plate **(White on black)**<br>
 
 This code was the adjustment version from :<br>
-https://github.com/MicrocontrollersAndMore/OpenCV_3_License_Plate_Recognition_Python
+https://github.com/MicrocontrollersAndMore/OpenCV_3_License_Plate_Recognition_Python 
+&
+https://github.com/muchlisinadi/ALPR-Indonesia
 
 ## Methods:
 Object detection is manualy segmenting plate, and recognize each candidate number or alphabet using knn method.<br>

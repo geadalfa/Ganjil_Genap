@@ -146,6 +146,13 @@ def main():
                       3)
         cv2.imshow("imgOriginalScene", img_original_scene)
 
+        #color = (0, 0, 0) # Black
+        #thickness = -1
+        cv2.rectangle(img_original_scene, (0,450), (720,500), (0, 0, 0), -1)
+
+        # Displaying the image
+        cv2.imshow("imgOriginalScene", img_original_scene)
+
         key = cv2.waitKey(5) & 0xFF
         # if 's' key pressed save the image
         if key == ord('s'):
