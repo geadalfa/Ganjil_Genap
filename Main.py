@@ -23,9 +23,11 @@ tgl = int(datetime.datetime.now().strftime('%d'))
 SCALAR_BLACK = (0.0, 0.0, 0.0)
 SCALAR_WHITE = (255.0, 255.0, 255.0)
 SCALAR_YELLOW = (0.0, 255.0, 255.0)
+#SCALAR_ORANGE = (255.0, 100.0, 0.0)
 SCALAR_GREEN = (0.0, 255.0, 0.0)
 SCALAR_RED = (0.0, 0.0, 255.0)
 N_VERIFY = 5  # number of verification
+intFontFace = cv2.FONT_HERSHEY_COMPLEX  # choose a complex jane font
 
 def maybeMakeNumber(s):
     """Returns a string 's' into a integer if possible, a float if needed or
@@ -132,8 +134,9 @@ def main():
                     licenses_verify = licenses_verify[1:]
                 licenses_verify.append(new_license)
 
-
-        cv2.putText(img_original_scene, waktu, (400, 450), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 255), 1,
+        cv2.rectangle(img_original_scene, (0, 420), (720, 500), (0, 0, 0), -1)
+        cv2.rectangle(img_original_scene, (0, 443), (720, 443), (255, 255, 255), -1)
+        cv2.putText(img_original_scene, waktu, (410, 440), cv2.FONT_HERSHEY_COMPLEX, 0.4, (255, 255, 255), 1,
                     bottomLeftOrigin=False)
 
         # cv2.putText(img_original_scene, "Press 's' to save frame to be 'save.png', for calibrating", (10, 30),
@@ -144,7 +147,13 @@ def main():
                       ((img_original_scene.shape[1] // 2 - 230), (img_original_scene.shape[0] // 2 - 80)),
                       ((img_original_scene.shape[1] // 2 + 230), (img_original_scene.shape[0] // 2 + 80)), SCALAR_GREEN,
                       3)
-        cv2.rectangle(img_original_scene, (0, 450), (720, 500), (0, 0, 0), -1)
+        if (tgl % 2) == 0:
+            cv2.putText(img_original_scene, "TANGGAL : GENAP", (145, 440), intFontFace, 0.4,
+                        SCALAR_YELLOW, 1)  # GENAP
+        else:
+            cv2.putText(img_original_scene, "TANGGAL : GANJIL", (145, 440), intFontFace, 0.4,
+                        SCALAR_YELLOW, 1)  # GANJIL
+
         cv2.imshow("imgOriginalScene", img_original_scene)
 
         key = cv2.waitKey(5) & 0xFF
@@ -196,7 +205,7 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
     sceneHeight, sceneWidth, sceneNumChannels = imgOriginalScene.shape
     plateHeight, plateWidth, plateNumChannels = licPlate.imgPlate.shape
 
-    intFontFace = cv2.FONT_HERSHEY_COMPLEX  # choose a plain jane font
+    intFontFace = cv2.FONT_HERSHEY_COMPLEX  # choose a complex jane font
 
     fltFontScale = float(plateHeight) / 30.0  # base font scale on height of plate area
     intFontThickness = int(round(fltFontScale * 1.5))  # base font thickness on font scale
@@ -219,7 +228,7 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
     else:  # else if the license plate is in the lower 1/4 of the image
         ptCenterOfTextAreaY = int(round(intPlateCenterY)) - int(
             round(plateHeight * 1.6))  # write the chars in above the plate
-    # end if yeah
+    # end if
 
     textSizeWidth, textSizeHeight = textSize  # unpack text size width and height
 
@@ -231,18 +240,18 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
     # write the text on the image
     cv2.putText(imgOriginalScene, licPlate.strChars, (ptLowerLeftTextOriginX, ptLowerLeftTextOriginY), intFontFace,
                 fltFontScale, SCALAR_YELLOW, intFontThickness)
+    cv2.rectangle(imgOriginalScene, (0, 420), (720, 500), (0, 0, 0), -1)
     cv2.putText(imgOriginalScene, waktu, (400, 450), intFontFace, 0.5, (255, 255, 255), 1,
                 bottomLeftOrigin=False)
-    cv2.rectangle(imgOriginalScene, (0, 450), (720, 500), (0, 0, 0), -1)
 
     if (tgl % 2) == 0:
         datesame = 0
-        cv2.putText(imgOriginalScene, "TANGGAL : GENAP", (100, 100), intFontFace, 1,
-                    SCALAR_WHITE, 1)  # GENAP
+        cv2.putText(imgOriginalScene, "TANGGAL : GENAP", (200, 400), intFontFace, 0.5,
+                    SCALAR_YELLOW, 1)  # GENAP
     else:
         datesame = 1
         cv2.putText(imgOriginalScene, "TANGGAL : GANJIL", (100, 100), intFontFace, 1,
-                    SCALAR_WHITE, 1)  # GANJIL
+                    (100,99,71), 1)  # GANJIL
 
     result_scanfix = []
     result_scan = licPlate.strChars
