@@ -241,7 +241,7 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
     cv2.rectangle(imgOriginalScene, (0, 420), (720, 500), (0, 0, 0), -1)
     cv2.rectangle(imgOriginalScene, (0, 443), (720, 443), SCALAR_YELLOW, -1)
     cv2.putText(imgOriginalScene, licPlate.strChars, (300, 438), intFontFace, 0.4, SCALAR_YELLOW, 1)
-    #cv2.putText(imgOriginalScene, waktu, (400, 457), intFontFace, 0.4, (255, 255, 255), 1) # Uncomment this to display plat number
+    cv2.putText(imgOriginalScene, waktu, (400, 457), intFontFace, 0.4, (255, 255, 255), 1) # Uncomment this to display plat number
 
     if (tgl % 2) == 0:
         datesame = 0
