@@ -23,7 +23,6 @@ tgl = int(datetime.datetime.now().strftime('%d'))
 SCALAR_BLACK = (0.0, 0.0, 0.0)
 SCALAR_WHITE = (255.0, 255.0, 255.0)
 SCALAR_YELLOW = (0.0, 255.0, 255.0)
-#SCALAR_ORANGE = (255.0, 100.0, 0.0)
 SCALAR_GREEN = (0.0, 255.0, 0.0)
 SCALAR_RED = (0.0, 0.0, 255.0)
 N_VERIFY = 5  # number of verification
@@ -237,11 +236,12 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
         ptCenterOfTextAreaY + (textSizeHeight / 2))  # based on the text area center, width, and height
 
     # write the text on the image
-    cv2.putText(imgOriginalScene, licPlate.strChars, (ptLowerLeftTextOriginX, ptLowerLeftTextOriginY), intFontFace,
-                fltFontScale, SCALAR_YELLOW, intFontThickness)
+    # cv2.putText(imgOriginalScene, licPlate.strChars, (ptLowerLeftTextOriginX, ptLowerLeftTextOriginY), intFontFace,
+    #             fltFontScale, SCALAR_YELLOW, intFontThickness) # Uncomment this to display plat number
     cv2.rectangle(imgOriginalScene, (0, 420), (720, 500), (0, 0, 0), -1)
     cv2.rectangle(imgOriginalScene, (0, 443), (720, 443), SCALAR_YELLOW, -1)
-    cv2.putText(imgOriginalScene, waktu, (400, 457), intFontFace, 0.4, (255, 255, 255), 1)
+    cv2.putText(imgOriginalScene, licPlate.strChars, (300, 438), intFontFace, 0.4, SCALAR_YELLOW, 1)
+    #cv2.putText(imgOriginalScene, waktu, (400, 457), intFontFace, 0.4, (255, 255, 255), 1) # Uncomment this to display plat number
 
     if (tgl % 2) == 0:
         datesame = 0
@@ -266,19 +266,19 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
             datesame2 = 0
             cv2.putText(imgOriginalScene, "NOMOR : GENAP", (145, 438), intFontFace, 0.4, SCALAR_WHITE, 1)  # GENAP
             if datesame == datesame2:
-                cv2.putText(imgOriginalScene, "JALAN", (400, 440), intFontFace, 0.4,
+                cv2.putText(imgOriginalScene, "JALAN", (400, 438), intFontFace, 0.4,
                                         SCALAR_GREEN, 1)  # Allowed
             else:
-                cv2.putText(imgOriginalScene, "TILANG", (400, 440), intFontFace,
+                cv2.putText(imgOriginalScene, "TILANG", (400, 438), intFontFace,
                                         0.4, SCALAR_RED, 1)  # Tilang
         else:
             datesame2 = 1
             cv2.putText(imgOriginalScene, "NOMOR : GANJIL", (145, 438), intFontFace, 0.4, SCALAR_WHITE, 1)  # GANJIL
             if datesame == datesame2:
-                cv2.putText(imgOriginalScene, "JALAN", (400, 440), intFontFace, 0.4,
+                cv2.putText(imgOriginalScene, "JALAN", (400, 438), intFontFace, 0.4,
                                     SCALAR_GREEN, 1)  # Allowed
             else:
-                cv2.putText(imgOriginalScene, "TILANG", (400, 440), intFontFace,
+                cv2.putText(imgOriginalScene, "TILANG", (400, 438), intFontFace,
                                     0.4, SCALAR_RED, 1)  # Tilang
     elif panjangplat == 2 :
         jumplat2 = int(jumplat[1])
@@ -286,19 +286,19 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
             datesame2 = 0
             cv2.putText(imgOriginalScene, "NOMOR : GENAP", (145, 438), intFontFace, 0.4, SCALAR_WHITE, 1)  # GENAP
             if datesame == datesame2:
-                cv2.putText(imgOriginalScene, "JALAN", (400, 440), intFontFace, 0.4,
+                cv2.putText(imgOriginalScene, "JALAN", (400, 438), intFontFace, 0.4,
                                         SCALAR_GREEN, 1)  # Allowed
             else:
-                cv2.putText(imgOriginalScene, "TILANG", (400, 440), intFontFace,
+                cv2.putText(imgOriginalScene, "TILANG", (400, 438), intFontFace,
                                         0.4, SCALAR_RED, 1)  # Tilang
         else:
             datesame2 = 1
             cv2.putText(imgOriginalScene, "NOMOR : GANJIL", (145, 438), intFontFace, 0.4, SCALAR_WHITE, 1)  # GANJIL
             if datesame == datesame2:
-                cv2.putText(imgOriginalScene, "JALAN", (400, 440), intFontFace, 0.4,
+                cv2.putText(imgOriginalScene, "JALAN", (400, 438), intFontFace, 0.4,
                                     SCALAR_GREEN, 1)  # Allowed
             else:
-                cv2.putText(imgOriginalScene, "TILANG", (400, 440), intFontFace,
+                cv2.putText(imgOriginalScene, "TILANG", (400, 438), intFontFace,
                                     0.4, SCALAR_RED, 1)  # Tilang
 
     elif panjangplat == 3 :
@@ -307,19 +307,19 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
             datesame2 = 0
             cv2.putText(imgOriginalScene, "NOMOR : GENAP", (145, 438), intFontFace, 0.4, SCALAR_WHITE, 1)  # GENAP
             if datesame == datesame2:
-                cv2.putText(imgOriginalScene, "JALAN", (400, 440), intFontFace, 0.4,
+                cv2.putText(imgOriginalScene, "JALAN", (400, 438), intFontFace, 0.4,
                                         SCALAR_GREEN, 1)  # Allowed
             else:
-                cv2.putText(imgOriginalScene, "TILANG", (400, 440), intFontFace,
+                cv2.putText(imgOriginalScene, "TILANG", (400, 438), intFontFace,
                                         0.4, SCALAR_RED, 1)  # Tilang
         else:
             datesame2 = 1
             cv2.putText(imgOriginalScene, "NOMOR : GANJIL", (145, 438), intFontFace, 0.4, SCALAR_WHITE, 1)  # GANJIL
             if datesame == datesame2:
-                cv2.putText(imgOriginalScene, "JALAN", (400, 440), intFontFace, 0.4,
+                cv2.putText(imgOriginalScene, "JALAN", (400, 438), intFontFace, 0.4,
                                     SCALAR_GREEN, 1)  # Allowed
             else:
-                cv2.putText(imgOriginalScene, "TILANG", (400, 440), intFontFace,
+                cv2.putText(imgOriginalScene, "TILANG", (400, 438), intFontFace,
                                     0.4, SCALAR_RED, 1)  # Tilang
 
     elif panjangplat == 4 :
@@ -328,19 +328,19 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
             datesame2 = 0
             cv2.putText(imgOriginalScene, "NOMOR : GENAP", (145, 438), intFontFace, 0.4, SCALAR_WHITE, 1)  # GENAP
             if datesame == datesame2:
-                cv2.putText(imgOriginalScene, "JALAN", (400, 440), intFontFace, 0.4,
+                cv2.putText(imgOriginalScene, "JALAN", (400, 438), intFontFace, 0.4,
                                         SCALAR_GREEN, 1)  # Allowed
             else:
-                cv2.putText(imgOriginalScene, "TILANG", (400, 440), intFontFace,
+                cv2.putText(imgOriginalScene, "TILANG", (400, 438), intFontFace,
                                         0.4, SCALAR_RED, 1)  # Tilang
         else:
             datesame2 = 1
             cv2.putText(imgOriginalScene, "NOMOR : GANJIL", (145, 438), intFontFace, 0.4, SCALAR_WHITE, 1)  # GANJIL
             if datesame == datesame2:
-                cv2.putText(imgOriginalScene, "JALAN", (400, 440), intFontFace, 0.4,
+                cv2.putText(imgOriginalScene, "JALAN", (400, 438), intFontFace, 0.4,
                                     SCALAR_GREEN, 1)  # Allowed
             else:
-                cv2.putText(imgOriginalScene, "TILANG", (400, 440), intFontFace,
+                cv2.putText(imgOriginalScene, "TILANG", (400, 438), intFontFace,
                                     0.4, SCALAR_RED, 1)  # Tilang
 
 
